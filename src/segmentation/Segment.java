@@ -8,7 +8,7 @@ import code.NlpirTest.CLibrary;
 
 public class Segment {
 
-	public String getSegment(String sInput){
+	public static String getSegment(String sInput){
 		String argu = "";
 		
 		String system_charset = "UTF-8";
@@ -30,7 +30,6 @@ public class Segment {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(i);
 		
 		nativeBytes = CLibrary.Instance.NLPIR_ParagraphProcess(sInput, 1);
 		
