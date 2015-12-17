@@ -19,9 +19,6 @@ import segmentation.Segment;
 
 public class Test1 {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		long time1=System.currentTimeMillis();
 //		file2DB();

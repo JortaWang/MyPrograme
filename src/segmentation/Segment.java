@@ -56,7 +56,6 @@ public class Segment {
 		try {
 			i=CLibrary.Instance.NLPIR_ImportUserDict("userDic.txt".getBytes("utf-8"), true);
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
