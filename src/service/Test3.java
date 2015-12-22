@@ -13,33 +13,53 @@ import utils.LoadFileUtil;
 
 public class Test3 {
 
-	
-	
 	public static void main(String[] args) {
 		String path = "File/评论.txt";
 		File file=new File(path);
 		String fileStr = LoadFileUtil.loadFile(file);
 		StringBuilder sb = new StringBuilder();
-		for(String strLine:fileStr.split("\\n")){
-			String[] str=strLine.split("\\s");
-			sb.append(str[5]);
+		String[] tmpFileStrs = fileStr.split("\n");
+		for(int i=0;i<tmpFileStrs.length;i++){
+			String tempLine = tmpFileStrs[i];
+			String[] tempColumn = tempLine.split("\\s");
+			sb.append(tempColumn[5]);
+			sb.append("\n");
 		}
 		String str = Segment.getSegment(sb.toString());
-		String[] splits = str.split(" ");
-		for(String spl:splits){
-			System.out.println(spl);
+		String[] splits = str.split("\n");
+		for(int i=0;i<splits.length;i++){
+			String spl = splits[i];
+//			System.out.println(spl);
+			String[] tmpWord = spl.split("\\s");
+			String output="";
+			for(int j=0;j<tmpWord.length;j++){
+				String[] tmp = tmpWord[j].split("/");
+				if("t".equals(tmp[1])||"nrg".equals(tmp[1])||"np".equals(tmp[1])||"nr".equals(tmp[1])||tmp[1].indexOf("vi")>=0){
+					//output += tmpWord[j]+" ";
+					output += tmp[0]+" ";
+//					if(!checkString(tmp[0])){
+//						System.out.println(spl);
+//						System.out.println(tmpFileStrs[i].split("\\s")[5]);
+//						break;
+//						break;
+//					}
+				}
+			}
+			if(!"".equals(output))
+				System.out.println(output);
 		}
 	}
 	
-	public static Set buildSet(){
-		File file = new File("patternList/netWord.txt");
+	public static boolean checkString(String tmp){
+		File file = new File("patternList/groupWord.txt");
 		String str = LoadFileUtil.loadFile(file);
-		String[] strArr = str.split("/n");
-		Set<String> set = new HashSet<>();
+		String[] strArr = str.split("\\n");
 		for(String s:strArr){
-			set.add(s);
+			if(s.equals(tmp)){
+				return true;
+			}
 		}
-		return set;
+		return false;
 	}
 	
 	public static String loadWeibo(File file){

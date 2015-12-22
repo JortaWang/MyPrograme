@@ -9,16 +9,17 @@ import java.util.Map;
 
 public class MapComparator {
 
-	public static <K, V> void comparator(Map<K, V> map) {
-
-	}
-
 	public static <K, V> Map<K, V> getOrder(Map<K, V> map) {
 		List<Map.Entry<K, V>> infoIds = new ArrayList<Map.Entry<K, V>>(map.entrySet());
 		
 		// 排序
 		Collections.sort(infoIds, new Comparator<Map.Entry<K, V>>() {
 			public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
+				if(o1.getValue() instanceof Integer && o2.getValue() instanceof Integer){
+					return (Integer)o1.getValue() - (Integer)o2.getValue();
+				}else if(o1.getValue() instanceof Double && o2.getValue() instanceof Double){
+					return (int)((Double)o1.getValue() - (Double)o2.getValue());
+				}
 				return 0;
 			}
 		});
